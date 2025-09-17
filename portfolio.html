@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diya Kshirsagar Portfolio</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
+body {scroll-behavior:smooth; background-color:#f5f5f5;}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #003366, #0066cc);
+  height: 100vh; /* reduced from 100vh so About section is visible */
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position: relative;
+  overflow:hidden;
+}
+header::before {
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.4);
+  z-index:0;
+}
+header h1, header p {
+  position: relative;
+  z-index:1;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+header h1 { font-size:4rem; font-weight:bold; margin-bottom:10px; }
+header p { font-size:1.5rem; }
+nav {position:absolute; top:20px; right:40px; z-index:1;}
+nav a {margin:0 15px; color:white; font-weight:bold; text-decoration:none; transition:0.3s;}
+nav a:hover {color:#ffcc00;}
+
+/* Sections */
+section {padding:80px 10%; min-height:100vh; position: relative;}
+section h2 {margin-bottom:50px; text-align:center; color:#003366;}
+
+/* About Section */
+#about {display:flex; align-items:center; gap:50px; flex-wrap:wrap; background:#e6f0ff;}
+#about-text {flex:1; min-width:250px;}
+#about-text p {font-size:1.1rem; line-height:1.6; color:#003366;}
+#about-img {flex:1; min-width:250px; text-align:center;}
+#about-img img {width:300px; height:300px; border-radius:50%; border:5px solid #003366; object-fit:cover;}
+
+/* Skills Section */
+#skills {background:#f0f8ff; text-align:center;}
+.skills-container {display:flex; justify-content:center; flex-wrap:wrap; gap:30px;}
+.skill-circle {width:120px; height:120px; border-radius:50%; border:8px solid #0066cc; display:flex; justify-content:center; align-items:center; color:#0066cc; font-weight:bold; font-size:1rem; transition:0.3s; cursor:pointer;}
+.skill-circle:hover {background:#0066cc; color:white; transform:scale(1.1);}
+
+/* Projects Section */
+#projects {background:#e6f0ff;}
+.projects-container {display:flex; flex-wrap:wrap; gap:20px; justify-content:center; overflow-x:hidden;}
+.project-card {flex: 1 1 300px; max-width:300px; position: relative; border-radius:10px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+.project-card img {width:100%; display:block; transition: transform 0.3s ease;}
+.project-card:hover img {transform:scale(1.05);}
+.overlay {position:absolute; bottom:0; background: rgba(0,51,102,0.85); color:#fff; width:100%; padding:15px; transform: translateY(100%); transition: transform 0.3s ease; text-align:center;}
+.project-card:hover .overlay {transform: translateY(0);}
+.overlay h3 {margin-bottom:10px; font-size:1.2rem;}
+.overlay p {font-size:0.9rem; margin-bottom:10px;}
+.overlay a {color:#ffcc00; text-decoration:none; font-weight:bold;}
+.overlay a:hover {color:#ffaa00;}
+
+/* Education Section */
+#education {background:#f0f8ff;}
+#education ul {list-style-type:none; padding-left:0;}
+#education li {font-size:1.1rem; margin-bottom:10px; font-weight:bold;}
+#education p {margin-left:20px; margin-bottom:20px; color:#003366;}
+
+/* Contact Section */
+#contact {background:#003366; color:white;}
+.contact-container {display:flex; flex-wrap:wrap; gap:50px; justify-content:space-between;}
+.contact-info {flex:1; min-width:300px;}
+.contact-info p, .contact-info li {margin-bottom:10px; font-size:1.1rem;}
+.contact-info li a {color:#ffcc00; text-decoration:none;}
+.contact-info li a:hover {color:#ffaa00;}
+.contact-form {flex:1; min-width:300px;}
+.form-container {background:rgba(255,255,255,0.1); padding:20px; border-radius:10px;}
+.form-container input, .form-container textarea {width:100%; padding:10px; margin-bottom:15px; border-radius:5px; border:none; outline:none; color:white; background:rgba(255,255,255,0.1);}
+.form-container input::placeholder, .form-container textarea::placeholder {color:white;}
+.form-container button {width:100%; padding:12px; background:#ffcc00; border:none; color:#003366; font-weight:bold; cursor:pointer; border-radius:5px;}
+.form-container button:hover {background:#ffaa00;}
+
+/* Fade-in Animation */
+.fade-in {opacity:0; transform:translateY(30px); transition: all 0.8s ease;}
+.fade-in.visible {opacity:1; transform:translateY(0);}
+
+/* Responsive */
+@media (max-width:900px){
+  #about {flex-direction: column; padding:50px 5%;}
+  #about-text, #about-img {text-align:center;}
+  nav {position:static; margin-bottom:20px;}
+}
+.projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px; /* more space between projects */
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.project-card {
+  flex: 1 1 400px; /* increase min-width to make card bigger */
+  max-width: 600px; /* max width for larger images */
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.project-card img {
+  width: 100%;
+  height: 250px; /* increase image height */
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div>
+    <h1>Diya Kshirsagar</h1>
+    <p>BCA Graduate | Front End Developer | Problem Solver</p>
+  </div>
+</header>
+
+<!-- About Section -->
+<section id="about" class="fade-in">
+  <div id="about-text">
+    <h2>About Me</h2>
+    <p>I am Diya Kshirsagar, a BCA graduate with a strong foundation in programming and web development. Proficient in HTML, CSS, JavaScript, and Python, with hands-on project experience. Developed projects like Hospital Management System, Cafe Delight, NGO Website, and Myntra Clone. Passionate about exploring new technologies and enhancing my technical skills. Thrives on solving real-world problems and contributing effectively to project success. Eager to apply my skills and grow through impactful internships.</p>
+  </div>
+  <div id="about-img">
+    <img src="profile.jpeg" alt="Profile Picture">
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="fade-in">
+  <h2>My Skills</h2>
+  <div class="skills-container">
+    <div class="skill-circle">HTML</div>
+    <div class="skill-circle">CSS</div>
+    <div class="skill-circle">JavaScript</div>
+    <div class="skill-circle">React</div>
+    <div class="skill-circle">Python</div>
+    <div class="skill-circle">PHP</div>
+    <div class="skill-circle">MySQL</div>
+    <div class="skill-circle">DBMS</div>
+    <div class="skill-circle">DS</div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="fade-in">
+  <h2>Projects & Certificates</h2>
+  <div class="projects-container">
+    <div class="project-card">
+      <img src="CafeDelight.png" alt="Cafe Delight Project">
+      <div class="overlay">
+        <h3>Cafe Delight</h3>
+        <p>Frontend of hotel management system with menu & billing.</p>
+        <a href="https://github.com/" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="Myntra Clone.png" alt="Myntra Clone Project">
+      <div class="overlay">
+        <h3>Myntra Clone</h3>
+        <p>Frontend clone of shopping platform.</p>
+        <a href="https://github.com/" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+    
+    <div class="project-card">
+      <img src="NGO.png" alt="NGO Website">
+      <div class="overlay">
+        <h3>NGO Website</h3>
+        <p>Designed and implemented NGO website frontend.</p>
+        <a href="https://github.com/" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="fade-in">
+  <h2>Education</h2>
+  <ul>
+    <li>Bachelor Degree - BCA</li>
+    <p>Chetan College of BCA and BBA, Karnataka University</p>
+    <p>CGPA:8.6</p>
+    <li>PUC College</li>
+    <p>JSS RSH PU College, Dharwad – First Class  in PCMCS</p>
+    <P>(Physics,Chemistry,Mathematics,Computer Science)</P>
+    <li>School</li>
+    <p>Lions English Medium School, Hubli – Completed 1st to 10th standard</p>
+  </ul>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="fade-in">
+  <h2 style="color: whitesmoke;">Contact Me</h2>
+  <div class="contact-container">
+    <div class="contact-info">
+      <p>Don't be shy! Feel free to get in touch with me. I am always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+      <ul>
+        <li>Address: Karnataka, India</li>
+        <li>Email: <a href="mailto:am.diyakshirsagar@gmail.com">am.diyakshirsagar@gmail.com</a></li>
+        <li>Phone: <a href="tel:+916363467212">+91 6363467212</a></li>
+        <li>GitHub: <a href="https://github.com/" target="_blank">https://github.com/</a></li>
+      </ul>
+    </div>
+    <div class="contact-form">
+      <div class="form-container">
+        <form>
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <input type="text" placeholder="Subject" required>
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Fade-in effect on scroll
+const faders = document.querySelectorAll('.fade-in');
+const appearOptions = { threshold: 0.3 };
+const appearOnScroll = new IntersectionObserver(function(entries, observer){
+  entries.forEach(entry => {
+    if(!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+    observer.unobserve(entry.target);
+  });
+}, appearOptions);
+
+faders.forEach(fader => appearOnScroll.observe(fader));
+</script>
+
+</body>
+</html>
